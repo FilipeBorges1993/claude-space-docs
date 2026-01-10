@@ -1,97 +1,271 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: "AgentBuilder Documentation"
+description: "Visual IDE for building Claude AI agents with drag-and-drop simplicity"
+icon: "house"
 ---
 
-## Setting up
+# AgentBuilder Documentation
 
-Get your documentation site up and running in minutes.
+Visual IDE for building Claude AI agents with drag-and-drop simplicity.
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
+**Think Blender for agent workflows** — visual node graph, real-time testing, export to production config.
 
-## Make it yours
+## Getting Started
 
-Design a docs site that looks great and empowers your users.
+New to AgentBuilder? Start here to get up and running quickly.
 
-<Columns cols={2}>
+<CardGroup cols={3}>
   <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
+    title="Installation & Setup"
+    icon="download"
+    href="/getting-started"
   >
-    Edit your docs locally and preview them in real time.
+    Get AgentBuilder running on your machine in 5 minutes
   </Card>
   <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
+    title="Quick Start"
+    icon="rocket"
+    href="/quickstart"
   >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+    Build a working "Email Summarizer" agent step-by-step in 10 minutes
   </Card>
   <Card
-    title="API documentation"
+    title="Workspace Basics"
+    icon="folder-tree"
+    href="/workspace-basics"
+  >
+    Understand projects, folders, and organization
+  </Card>
+</CardGroup>
+
+## Core Concepts
+
+Master the fundamentals of building AI agents visually.
+
+### Node Types Reference
+
+Learn about the 7 node types that make up your agent systems:
+
+<CardGroup cols={2}>
+  <Card
+    title="Agent Node"
+    icon="robot"
+    href="/node-types/agent-node"
+  >
+    Main agent configuration: system prompt, model, permissions
+  </Card>
+  <Card
+    title="Skills Node"
+    icon="wrench"
+    href="/node-types/skills-node"
+  >
+    Agent capabilities: file operations, API calls, code execution
+  </Card>
+  <Card
+    title="Memory Node"
+    icon="brain"
+    href="/node-types/memory-node"
+  >
+    Persistent knowledge: conversation history, knowledge bases
+  </Card>
+  <Card
+    title="Commands Node"
     icon="terminal"
-    href="/api-reference/introduction"
+    href="/node-types/commands-node"
   >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
-
-## Create beautiful pages
-
-Everything you need to create world-class documentation.
-
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
+    Custom slash commands: `/summarize`, `/review-pr`
   </Card>
   <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
+    title="MCPs Node"
+    icon="plug"
+    href="/node-types/mcps-node"
   >
-    Add sample code to demonstrate how to use your product.
+    External tool integrations: Context7 docs, databases, APIs
   </Card>
   <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
+    title="Hooks Node"
+    icon="fish-fins"
+    href="/node-types/hooks-node"
   >
-    Display images and other media.
+    Lifecycle event handlers: PreToolUse, PostToolUse, SessionStart
   </Card>
   <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
+    title="Sub-agents Node"
+    icon="users"
+    href="/node-types/subagents-node"
   >
-    Write once and reuse across your docs.
+    Delegated specialized agents: code reviewer, researcher
   </Card>
-</Columns>
+  <Card
+    title="Node Types Overview"
+    icon="sitemap"
+    href="/node-types/overview"
+  >
+    Complete reference for all node types
+  </Card>
+</CardGroup>
 
-## Need inspiration?
+## What You Can Build
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+AgentBuilder enables you to create sophisticated AI agent systems:
+
+<AccordionGroup>
+  <Accordion title="Single-Purpose Agents">
+    - Email handler and summarizer
+    - Code reviewer with custom rules
+    - Document analyzer and reporter
+    - Customer support bot
+  </Accordion>
+
+  <Accordion title="Multi-Agent Systems">
+    - Research coordinator with specialist sub-agents
+    - Code generation pipeline (planner → writer → reviewer)
+    - Customer service orchestrator (routing → specialist → escalation)
+  </Accordion>
+
+  <Accordion title="Complex Workflows">
+    - Agents with custom lifecycle hooks
+    - Memory-enabled conversational agents
+    - Tool-augmented agents with MCP integrations
+    - Command-driven automation bots
+  </Accordion>
+</AccordionGroup>
+
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────┐
+│         Electron Desktop App            │
+├─────────────────────────────────────────┤
+│  Vue 3 + TypeScript + Vite              │
+│  ┌────────────┐  ┌──────────────────┐   │
+│  │ Node Graph │  │  Chat Interface  │   │
+│  │ (Vue Flow) │  │  (Agent Testing) │   │
+│  └────────────┘  └──────────────────┘   │
+├─────────────────────────────────────────┤
+│  Pinia State Management                 │
+├─────────────────────────────────────────┤
+│  Claude Agent SDK Integration           │
+└─────────────────────────────────────────┘
+```
+
+**Tech Stack:**
+- Electron 28 - Desktop application framework
+- Vue 3 - Modern UI framework with TypeScript
+- Vue Flow - Node graph canvas
+- Pinia - State management
+- Claude Agent SDK - AI agent execution
+
+## Why AgentBuilder?
+
+### The Problem
+
+Manually editing `.claude` configuration folders is error-prone and difficult to visualize:
+- Hard to understand agent architecture at a glance
+- Easy to misconfigure permissions and tool access
+- Difficult to manage complex multi-agent systems
+- No way to test changes in real-time
+
+### The Solution
+
+AgentBuilder provides a visual interface for building Claude AI agents:
+
+**Visual Node Graph**
+- Drag-and-drop canvas for building agent workflows
+- Clear visualization of agent architecture
+- Real-time validation and error checking
+
+**Integrated Testing**
+- Chat interface built right into the IDE
+- Test agents as you build them
+- See agent thinking process and tool calls
+
+**Production-Ready Export**
+- One-click export to `.claude` folder structure
+- Generates all configuration files automatically
+- Compatible with Claude Code CLI
+
+**Full Ecosystem Management**
+- Skills, Commands, MCPs, Sub-agents, Hooks
+- All managed through intuitive GUI
+- Reusable component library
+
+## Quick Links
+
+<CardGroup cols={2}>
+  <Card
+    title="Your First Agent"
+    icon="play"
+    href="/quickstart"
+  >
+    Build your first agent in 10 minutes
+  </Card>
+  <Card
+    title="Installation & Setup"
+    icon="download"
+    href="/getting-started"
+  >
+    Get AgentBuilder installed in 5 minutes
+  </Card>
+  <Card
+    title="Node Types Reference"
+    icon="sitemap"
+    href="/node-types/overview"
+  >
+    Learn about all 7 node types
+  </Card>
+  <Card
+    title="Claude Code Setup"
+    icon="asterisk"
+    href="/ai-tools/claude-code"
+  >
+    Configure Claude Code for your workflow
+  </Card>
+</CardGroup>
+
+## System Requirements
+
+- **Node.js:** ≥18.19.9
+- **Platform:** macOS, Windows, or Linux
+- **RAM:** 4GB minimum, 8GB recommended
+- **Disk Space:** 500MB for app + workspace storage
+
+## Community & Support
+
+<CardGroup cols={3}>
+  <Card
+    title="Report a Bug"
+    icon="bug"
+    href="https://github.com/FilipeBorges1993/ClaudeSpaceElectron/issues"
+  >
+    Found an issue? Let us know on GitHub
+  </Card>
+  <Card
+    title="Join Discord"
+    icon="discord"
+    href="https://discord.gg/2tr2S7yw"
+  >
+    Get help and connect with the community
+  </Card>
+  <Card
+    title="Contribute"
+    icon="github"
+    href="https://github.com/FilipeBorges1993/ClaudeSpaceElectron"
+  >
+    Help improve AgentBuilder
+  </Card>
+</CardGroup>
+
+---
+
+<div align="center">
+
+**AgentBuilder** - Making AI agent development visual, one node at a time.
+
+```
+⚡ Electron + Vue + Claude SDK = 🚀
+```
+
+MIT License - [View License](https://github.com/FilipeBorges1993/ClaudeSpaceElectron/blob/main/LICENSE)
+
+</div>

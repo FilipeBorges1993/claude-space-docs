@@ -1,0 +1,266 @@
+---
+title: "MCPs Node"
+description: "Integrate external tools and services with Model Context Protocol"
+icon: "plug"
+---
+
+# MCPs Node (Model Context Protocol)
+
+**MCPs** connect your agent to external tools, databases, and services.
+
+---
+
+## Overview
+
+**Purpose:** Integrate external systems (databases, APIs, documentation)
+**Connection:** Top-right handle of main agent card
+**Color:** Blue
+**Icon:** 🔌
+**Required:** Optional (0 to many)
+
+---
+
+## What are MCPs?
+
+Model Context Protocol (MCP) servers provide external tool access:
+- Documentation lookup (Context7)
+- Database connections (PostgreSQL, MongoDB)
+- File systems
+- Custom APIs
+
+**Think:** Like plugins for your agent.
+
+---
+
+## MCP Structure
+
+MCPs are configured with command + arguments:
+
+```json
+{
+  "context7": {
+    "command": "npx",
+    "args": ["-y", "@context7/mcp-server"],
+    "env": {
+      "CONTEXT7_API_KEY": "your-key"
+    }
+  }
+}
+```
+
+Stored in `.mcp.json` at project root.
+
+---
+
+## Built-in MCPs
+
+### Context7 (Documentation Lookup)
+
+**Purpose:** Retrieve up-to-date library documentation
+
+**Configuration:**
+```json
+{
+  "context7": {
+    "command": "npx",
+    "args": ["-y", "@context7/mcp-server"],
+    "env": {
+      "CONTEXT7_API_KEY": "your-api-key"
+    }
+  }
+}
+```
+
+**Use case:** Agent looks up React/Vue/Python docs
+
+---
+
+### File System MCP
+
+**Purpose:** Access local file system
+
+**Configuration:**
+```json
+{
+  "filesystem": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-filesystem", "/allowed/path"]
+  }
+}
+```
+
+**Use case:** Read/write files outside project directory
+
+---
+
+### Database MCPs
+
+**PostgreSQL:**
+```json
+{
+  "postgresql": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-postgres"],
+    "env": {
+      "DATABASE_URL": "postgresql://user:pass@localhost/db"
+    }
+  }
+}
+```
+
+**Use case:** Query customer database, analytics
+
+---
+
+## Creating Custom MCPs
+
+**Via Settings → Node Managers → MCPs:**
+
+1. Click "Add New MCP"
+2. Enter name (e.g., "Internal API")
+3. Define command: `node server.js`
+4. Add arguments: `["--port", "3000"]`
+5. Set environment variables (API keys, URLs)
+6. Save to workspace library
+
+**MCP appears in sidebar → drag to canvas.**
+
+---
+
+## Configuration
+
+**When clicked on canvas:**
+- Edit command and args
+- Set environment variables
+- Configure connection settings
+- Test connectivity
+
+---
+
+## Real-World Examples
+
+### Example 1: Slack Integration
+
+```json
+{
+  "slack": {
+    "command": "node",
+    "args": ["slack-mcp-server.js"],
+    "env": {
+      "SLACK_TOKEN": "xoxb-your-token",
+      "SLACK_CHANNEL": "#general"
+    }
+  }
+}
+```
+
+**Agent can:**
+- Send Slack messages
+- Read channel history
+- Search conversations
+
+---
+
+### Example 2: Redis Cache
+
+```json
+{
+  "redis": {
+    "command": "node",
+    "args": ["redis-mcp.js"],
+    "env": {
+      "REDIS_URL": "redis://localhost:6379"
+    }
+  }
+}
+```
+
+**Agent can:**
+- Cache frequently-used data
+- Store session information
+- Implement rate limiting
+
+---
+
+### Example 3: AWS Services
+
+```json
+{
+  "aws": {
+    "command": "node",
+    "args": ["aws-mcp-server.js"],
+    "env": {
+      "AWS_REGION": "us-east-1",
+      "AWS_ACCESS_KEY_ID": "your-key",
+      "AWS_SECRET_ACCESS_KEY": "your-secret"
+    }
+  }
+}
+```
+
+**Agent can:**
+- Upload files to S3
+- Query DynamoDB
+- Invoke Lambda functions
+
+---
+
+## Security Considerations
+
+**⚠️ Important:**
+- MCPs have full system access based on their permissions
+- Store credentials in environment variables (not hardcoded)
+- Use read-only database accounts when possible
+- Audit MCP server code before use
+- Restrict network access via firewalls
+
+**Best practice:** Test MCPs in sandbox before production use.
+
+---
+
+## MCP vs. Skills
+
+| Feature | MCPs | Skills |
+|---------|------|--------|
+| **Purpose** | External systems | Agent capabilities |
+| **Scope** | System-wide | Project-specific |
+| **Language** | Any (runs as separate process) | Python/JS/shell |
+| **Example** | Database connection | Data processing |
+
+**Use both:** MCPs connect to external systems, skills process data.
+
+---
+
+## Troubleshooting
+
+### MCP won't connect
+
+**Check:**
+1. Command path is correct
+2. Dependencies installed (`npx` can find package)
+3. Environment variables set correctly
+4. Network connectivity (for remote services)
+5. Authentication credentials valid
+
+### MCP is slow
+
+**Solutions:**
+- Add caching layer
+- Use connection pooling
+- Implement rate limiting
+- Choose geographically-close servers
+
+---
+
+## Next Steps
+
+- [Hooks Node](/node-types/hooks-node) - Lifecycle events
+- [Sub-agents Node](/node-types/subagents-node) - Specialized agents
+
+---
+
+<div align="center">
+
+[← Commands Node](/node-types/commands-node) | [Agent Node](/node-types/agent-node) | [Hooks Node →](/node-types/hooks-node)
+
+</div>

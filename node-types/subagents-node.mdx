@@ -1,0 +1,357 @@
+---
+title: "Sub-agents Node"
+description: "Delegate specialized tasks to dedicated sub-agents"
+icon: "users"
+---
+
+# Sub-agents Node
+
+**Sub-agents** are specialized agents that handle delegated tasks.
+
+---
+
+## Overview
+
+**Purpose:** Delegate tasks to expert agents with different configurations
+**Connection:** Bottom center handle of main agent card
+**Color:** Purple
+**Icon:** 🎭
+**Required:** Optional (0 to many)
+
+---
+
+## What are Sub-agents?
+
+Sub-agents are independent agents with their own:
+- System prompts
+- Model selection (Opus/Sonnet/Haiku)
+- Skills and capabilities
+- Permissions
+
+**Main agent delegates tasks → Sub-agent executes → Returns results**
+
+---
+
+## When to Use Sub-agents
+
+### Use Case 1: Specialized Expertise
+
+**Example:** Main coordinator agent + specialized sub-agents
+
+```
+[Main: Coordinator]
+        ↓
+  ┌─────┼─────┐
+  ↓     ↓     ↓
+[Code] [Research] [Writer]
+```
+
+**Benefits:**
+- Each sub-agent optimized for specific task
+- Different system prompts per specialty
+- Different model per task (Opus for code, Haiku for simple tasks)
+
+---
+
+### Use Case 2: Different Models
+
+**Example:** Fast triage + deep analysis
+
+```
+[Main: Triage Agent (Haiku)]
+        ↓
+[Sub-agent: Deep Analysis (Opus)]
+```
+
+**Benefits:**
+- Fast initial processing
+- Expensive model only when needed
+- Cost optimization
+
+---
+
+### Use Case 3: Isolated Permissions
+
+**Example:** Read-only coordinator + write-enabled worker
+
+```
+[Main: Coordinator (read-only)]
+        ↓
+[Sub-agent: File Writer (write permissions)]
+```
+
+**Benefits:**
+- Coordinator can't accidentally modify files
+- Write operations isolated and controlled
+
+---
+
+## Sub-agent Structure
+
+Sub-agents are defined as markdown files with YAML frontmatter:
+
+```markdown
+---
+name: Code Reviewer
+model: claude-opus-4-5
+temperature: 0.2
+max_tokens: 4096
+permissions:
+  allow:
+    - read
+  deny:
+    - write
+---
+
+# Code Reviewer Sub-agent
+
+You are a senior code reviewer. Focus on:
+1. Security vulnerabilities
+2. Performance issues
+3. Code style violations
+
+Always provide specific line numbers and fixes.
+```
+
+---
+
+## Creating Sub-agents
+
+**Via Settings → Node Managers → Sub-agents:**
+
+1. Click "Add New Sub-agent"
+2. Enter name (e.g., "Security Scanner")
+3. Choose model (Opus/Sonnet/Haiku)
+4. Write system prompt
+5. Configure permissions
+6. Save to workspace library
+
+**Sub-agent appears in sidebar → drag to canvas.**
+
+---
+
+## Configuration
+
+**When clicked on canvas:**
+- Edit system prompt
+- Change model selection
+- Configure permissions
+- Add skills (specific to this sub-agent)
+- Set temperature and max tokens
+
+---
+
+## Real-World Examples
+
+### Example 1: Multi-Stage Code Review
+
+**Main Agent (Coordinator):**
+```markdown
+---
+name: Review Coordinator
+model: claude-sonnet-4-5
+---
+
+You coordinate code reviews. When given code:
+1. Send to Security Scanner sub-agent
+2. Send to Performance Analyzer sub-agent
+3. Send to Style Checker sub-agent
+4. Combine reports into final review
+```
+
+**Sub-agent 1 (Security):**
+```markdown
+---
+name: Security Scanner
+model: claude-opus-4-5
+temperature: 0.1
+---
+
+You are a security expert. Check for:
+- SQL injection
+- XSS vulnerabilities
+- Auth bypasses
+- Exposed credentials
+```
+
+**Sub-agent 2 (Performance):**
+```markdown
+---
+name: Performance Analyzer
+model: claude-sonnet-4-5
+temperature: 0.2
+---
+
+You analyze performance. Look for:
+- N+1 queries
+- Memory leaks
+- Inefficient algorithms
+```
+
+**Sub-agent 3 (Style):**
+```markdown
+---
+name: Style Checker
+model: claude-haiku-4-0
+temperature: 0.0
+---
+
+You check code style. Verify:
+- Naming conventions
+- Formatting
+- Comments
+```
+
+---
+
+### Example 2: Research Pipeline
+
+**Main Agent:**
+```markdown
+---
+name: Research Coordinator
+model: claude-sonnet-4-5
+---
+
+You coordinate research projects:
+1. Send topic to Web Researcher (gather sources)
+2. Send sources to Fact Checker (verify)
+3. Send verified info to Report Writer (compose)
+```
+
+**Sub-agents:**
+- **Web Researcher** (Haiku) - Fast web scraping
+- **Fact Checker** (Opus) - Deep verification
+- **Report Writer** (Sonnet) - Balanced writing
+
+---
+
+### Example 3: Customer Service Router
+
+**Main Agent:**
+```markdown
+---
+name: Support Router
+model: claude-haiku-4-0
+---
+
+You route customer inquiries:
+- Billing questions → Billing Specialist
+- Technical issues → Tech Support
+- General questions → General Support
+```
+
+**Sub-agents:**
+- **Billing Specialist** - Trained on billing policies
+- **Tech Support** - Access to troubleshooting database
+- **General Support** - Broad FAQ knowledge
+
+---
+
+## Sub-agent Patterns
+
+### Pattern 1: Coordinator + Specialists
+
+**Structure:**
+```
+      [Coordinator]
+       ↙    ↓    ↘
+[Expert A] [Expert B] [Expert C]
+```
+
+**Use case:** Complex tasks requiring multiple specialties
+
+---
+
+### Pattern 2: Pipeline
+
+**Structure:**
+```
+[Agent 1: Collect] → [Agent 2: Process] → [Agent 3: Report]
+```
+
+**Use case:** Sequential processing with different models
+
+---
+
+### Pattern 3: Parallel Processing
+
+**Structure:**
+```
+            [Main]
+         ↙    ↓    ↘
+[Worker 1] [Worker 2] [Worker 3]
+     (parallel execution)
+         ↘    ↓    ↙
+          [Combine]
+```
+
+**Use case:** Process multiple items simultaneously
+
+---
+
+## Best Practices
+
+**✅ Do:**
+- Give sub-agents focused responsibilities
+- Use appropriate models per task
+- Clearly define sub-agent roles in system prompts
+- Test sub-agents independently first
+- Monitor costs (multiple agents = higher usage)
+
+**❌ Don't:**
+- Create too many sub-agents (complexity)
+- Give overlapping responsibilities
+- Use Opus for all sub-agents (cost)
+- Skip testing coordination logic
+
+---
+
+## Cost Optimization
+
+**Strategy:**
+
+1. **Triage with Haiku** (cheap, fast)
+2. **Deep work with Opus** (expensive, accurate)
+3. **Balanced tasks with Sonnet** (medium cost/quality)
+
+**Example:**
+```
+Haiku: Route to correct specialist ($)
+Sonnet: Most work happens here ($$)
+Opus: Only complex reasoning ($$$)
+```
+
+**Savings:** 50-70% vs. using Opus for everything
+
+---
+
+## Troubleshooting
+
+### Sub-agent not being called
+
+**Check:**
+1. Sub-agent connected to main agent card
+2. Main agent prompt mentions delegating to sub-agent
+3. Sub-agent name matches in prompt
+
+### Sub-agent gives unexpected results
+
+**Check:**
+1. Sub-agent system prompt is clear
+2. Sub-agent has necessary skills/permissions
+3. Sub-agent model appropriate for task
+
+---
+
+## Next Steps
+
+- [Back to Node Types](/node-types/overview)
+
+---
+
+<div align="center">
+
+[← Hooks Node](/node-types/hooks-node) | [Agent Node](/node-types/agent-node) | [Back to Node Types](/node-types/overview)
+
+</div>
