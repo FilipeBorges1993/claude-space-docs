@@ -1,0 +1,264 @@
+# Commands Node
+
+**Commands** create custom slash commands for quick agent actions.
+
+---
+
+## Overview
+
+**Purpose:** Define user-facing slash commands (e.g., `/summarize`, `/review-pr`)
+**Connection:** Configured via panel (no visual connection)
+**Color:** Purple
+**Icon:** ⚙️
+**Required:** Optional (0 to many)
+
+---
+
+## What are Commands?
+
+Commands are shortcuts that trigger specific agent behaviors with parameters:
+
+**Example:**
+```
+User types: /summarize report.pdf
+Agent knows: Read file, create 3-bullet summary
+```
+
+---
+
+## Command Structure
+
+Commands are defined as markdown files with YAML frontmatter:
+
+```markdown
+---
+name: summarize
+description: Summarize a document
+parameters:
+  - name: file
+    description: File path to summarize
+    required: true
+---
+
+# Summarize Command
+
+When user runs `/summarize <file>`:
+1. Read the file at the given path
+2. Extract key points
+3. Return 3-bullet summary
+
+## Output Format
+📄 **Summary of [filename]:**
+• [Key point 1]
+• [Key point 2]
+• [Key point 3]
+```
+
+---
+
+## Creating Commands
+
+**Via Settings → Node Managers → Commands:**
+
+1. Click "Add New Command"
+2. Define command name (e.g., `review-pr`)
+3. Write YAML frontmatter (parameters, description)
+4. Write markdown body (instructions)
+5. Save to workspace library
+
+**Usage in chat:**
+```
+/review-pr 123
+```
+
+---
+
+## Command Examples
+
+### Example 1: Document Summarizer
+
+```markdown
+---
+name: summarize
+description: Create bullet-point summary
+parameters:
+  - name: file
+    required: true
+    description: Document to summarize
+  - name: bullets
+    required: false
+    default: 3
+    description: Number of bullet points
+---
+
+# Summarize Command
+
+Read the file and create a {bullets}-point summary.
+Format as markdown list.
+```
+
+**Usage:**
+```
+/summarize report.pdf
+/summarize report.pdf bullets=5
+```
+
+---
+
+### Example 2: Code Reviewer
+
+```markdown
+---
+name: review-pr
+description: Review GitHub pull request
+parameters:
+  - name: pr_number
+    required: true
+    description: PR number to review
+  - name: focus
+    required: false
+    default: all
+    description: Focus area (security, performance, style, all)
+---
+
+# Review PR Command
+
+1. Fetch PR #{pr_number} from GitHub
+2. Review code changes
+3. Focus on {focus} issues
+4. Report findings with severity levels
+```
+
+**Usage:**
+```
+/review-pr 456
+/review-pr 456 focus=security
+```
+
+---
+
+### Example 3: Deployment Runner
+
+```markdown
+---
+name: deploy
+description: Deploy application to environment
+parameters:
+  - name: env
+    required: true
+    description: Environment (staging, production)
+  - name: confirm
+    required: false
+    default: false
+    description: Skip confirmation prompt
+---
+
+# Deploy Command
+
+Deploy the application to {env} environment.
+
+## Steps
+1. Run tests
+2. Build application
+3. Deploy to {env}
+4. Verify deployment
+
+⚠️ If env=production and confirm=false, ask for confirmation first.
+```
+
+**Usage:**
+```
+/deploy staging
+/deploy production confirm=true
+```
+
+---
+
+## Parameter Types
+
+### Required Parameters
+
+```yaml
+parameters:
+  - name: file
+    required: true
+    description: File to process
+```
+
+**Agent will error if not provided.**
+
+---
+
+### Optional Parameters with Defaults
+
+```yaml
+parameters:
+  - name: format
+    required: false
+    default: markdown
+    description: Output format
+```
+
+**Agent uses default if not provided.**
+
+---
+
+### Multiple Parameters
+
+```yaml
+parameters:
+  - name: source
+    required: true
+  - name: target
+    required: true
+  - name: options
+    required: false
+```
+
+**Usage:** `/command source=a target=b options=c`
+
+---
+
+## Best Practices
+
+**✅ Do:**
+- Use descriptive command names
+- Document all parameters clearly
+- Provide defaults for optional params
+- Include usage examples
+- Define expected output format
+
+**❌ Don't:**
+- Create commands for one-time tasks
+- Use generic names (`/do`, `/run`)
+- Skip parameter descriptions
+- Make too many required params
+
+---
+
+## Commands vs. Skills
+
+| Feature | Commands | Skills |
+|---------|----------|--------|
+| **User-facing** | Yes | No |
+| **Parameters** | User provides | Agent decides |
+| **Purpose** | Shortcuts | Capabilities |
+| **Example** | `/summarize` | File System skill |
+
+**Use both:** Command triggers agent, which uses skills to execute.
+
+---
+
+## Next Steps
+
+- [MCPs Node](mcps-node.md) - External integrations
+- [Hooks Node](hooks-node.md) - Lifecycle events
+- [Testing Agents](../06-testing-agents.md) - Test commands
+
+---
+
+<div align="center">
+
+[← Memory Node](memory-node.md) | [Agent Node](agent-node.md) | [MCPs Node →](mcps-node.md)
+
+</div>

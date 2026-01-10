@@ -1,7 +1,26 @@
+# Installation & Setup
+
+Get AgentBuilder running on your machine in under 5 minutes.
+
 ---
-title: "Quick Start"
-description: "Get AgentBuilder running on your machine"
----
+
+## System Requirements
+
+Before installing, ensure your system meets these requirements:
+
+| Requirement | Minimum | Recommended |
+|-------------|---------|-------------|
+| **Node.js** | ≥18.19.9 | Latest LTS |
+| **RAM** | 4GB | 8GB |
+| **Disk Space** | 500MB | 1GB |
+| **Platform** | macOS, Windows, Linux | Any |
+
+**Check your Node.js version:**
+```bash
+node --version
+```
+
+If you need to install or update Node.js, download it from [nodejs.org](https://nodejs.org/).
 
 ---
 
@@ -12,13 +31,28 @@ description: "Get AgentBuilder running on your machine"
 Get AgentBuilder running in 3 commands:
 
 ```bash
+# Clone the repository
+git clone https://github.com/FilipeBorges1993/ClaudeSpaceElectron.git
+cd ClaudeSpaceElectron
 
-# Install claude code globaly 
-npm -g clade-space
-# Open in you project 
-claude-space project
+# Install dependencies
+npm install
 
+# Run AgentBuilder
+npm run dev
 ```
+
+**Expected output:**
+```
+  VITE v5.x.x  ready in xxx ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+
+  Electron app started
+```
+
+✅ **Success:** AgentBuilder opens automatically
 
 ---
 
@@ -31,9 +65,6 @@ For production builds or custom installations:
 git clone https://github.com/FilipeBorges1993/ClaudeSpaceElectron.git
 cd ClaudeSpaceElectron
 npm install
-
-# Run in dev mode
-npm run dev
 
 # Build for your platform
 npm run build:mac      # macOS (Intel + ARM)
@@ -48,12 +79,71 @@ npm run build:linux    # Linux AppImage
 
 ---
 
-## First Launch (Main Dashboard)
+## First Launch
 
-<img height="200" src="/images/mainspace.png" />
+When you launch AgentBuilder for the first time:
+
+### 1. Welcome Screen
+
+The app opens with a workspace selection dialog.
+
+[Screenshot: Workspace selection dialog showing "Select Workspace Folder" button]
+
+### 2. Select Workspace
+
+A **workspace** is a folder where AgentBuilder stores your projects.
+
+**Choose or create a folder:**
+```bash
+# Example locations
+~/Documents/AgentBuilder-Workspace     # macOS/Linux
+C:\Users\YourName\AgentBuilder         # Windows
+```
+
+**Recommendation:** Create a dedicated folder for your agents.
+
+### 3. Main Dashboard
+
+After selecting a workspace, you'll see the main dashboard:
+
+[Screenshot: AgentBuilder main dashboard with "New Project" button and empty project list]
 
 ✅ **Checkpoint:** You're ready to create projects!
 
+---
+
+## Verify Installation
+
+Run these commands to ensure everything is working correctly:
+
+### Type Checking
+
+```bash
+# Check all TypeScript files
+npm run typecheck
+
+# Check specific areas
+npm run typecheck:node    # Node/Electron code
+npm run typecheck:web     # Vue/Renderer code
+```
+
+**Expected output:** `✓ No errors found`
+
+### Linting
+
+```bash
+npm run lint
+```
+
+**Expected output:** `✓ No linting errors found`
+
+### Code Formatting
+
+```bash
+npm run format
+```
+
+**Expected output:** `✓ All files formatted`
 
 ---
 
@@ -86,7 +176,7 @@ claude auth login
 2. In AgentBuilder: Settings → Claude Configuration → API Key
 3. Paste your key and click Save
 
-<img height="200" src="/images/api-settings.png" />
+[Screenshot: Settings panel showing API key input field]
 
 **Note:** API keys are stored securely in your system's credential manager.
 
@@ -96,6 +186,9 @@ claude auth login
 
 Now that AgentBuilder is installed, you're ready to build your first agent!
 
+**Continue to:** [Your First Agent](02-quick-start.md) (10-minute tutorial)
+
+**Or explore:**
 - [Workspace Basics](03-workspace-basics.md) - Understand project organization
 - [Node Types Reference](04-node-types/README.md) - Learn about all node types
 - [Canvas Workflow](05-canvas-workflow.md) - Master the visual editor
@@ -203,6 +296,35 @@ claude auth login
 claude models list
 ```
 
+---
+
+### Problem: Build fails on specific platform
+
+**macOS specific:**
+```bash
+# Install Xcode Command Line Tools
+xcode-select --install
+
+# Accept license
+sudo xcodebuild -license accept
+```
+
+**Windows specific:**
+```bash
+# Install Windows Build Tools
+npm install --global windows-build-tools
+```
+
+**Linux specific:**
+```bash
+# Install dependencies (Debian/Ubuntu)
+sudo apt-get install build-essential libx11-dev libxkbfile-dev
+
+# Install dependencies (Fedora)
+sudo dnf install @development-tools
+```
+
+---
 
 ### Still Having Issues?
 
@@ -273,6 +395,13 @@ Understanding how AgentBuilder works under the hood:
 └─────────────────────────────────────┘
 ```
 
+**Key directories:**
+```
+src/
+├── main/           # Electron main process (Node.js)
+├── preload/        # Context bridge & IPC
+└── renderer/       # Vue 3 application (UI)
+```
 
 ---
 

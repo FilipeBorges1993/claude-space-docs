@@ -1,0 +1,211 @@
+# Skills Node
+
+**Skills** give your agent capabilities—tools and actions it can perform.
+
+---
+
+## Overview
+
+**Purpose:** Add tools and capabilities to your agent (file operations, API calls, code execution)
+**Connection:** Right handle of main agent card
+**Color:** Red
+**Icon:** 🛠️
+**Required:** Optional (0 to many)
+
+---
+
+## What are Skills?
+
+Skills are folder-based capabilities that define what your agent can do:
+- Read and write files
+- Execute Python/JavaScript code
+- Call external APIs
+- Process data
+- Interact with systems
+
+---
+
+## Skill Structure
+
+Each skill is a folder containing:
+
+```
+my-skill/
+├── SKILL.md              # Skill definition (required)
+├── scripts/              # Executable scripts
+│   ├── main.py
+│   └── helper.sh
+├── references/           # Documentation
+│   └── api-docs.md
+└── assets/               # Resources
+    └── config.json
+```
+
+---
+
+## SKILL.md Format
+
+The skill definition file uses YAML frontmatter + markdown:
+
+```markdown
+---
+name: GitHub API
+description: Interact with GitHub repositories
+version: 1.0.0
+author: Your Name
+---
+
+# GitHub API Skill
+
+This skill provides GitHub API integration.
+
+## Usage
+
+Call the skill with:
+- Repository name
+- Action (get, create, update, delete)
+- Parameters (issue number, PR number, etc.)
+
+## Examples
+
+Get repository info:
+Input: repo=owner/name, action=get
+
+Create issue:
+Input: repo=owner/name, action=create_issue, title="Bug", body="Description"
+```
+
+---
+
+## Built-in Skills
+
+AgentBuilder includes these common skills:
+
+| Skill | Purpose | Example Use |
+|-------|---------|-------------|
+| **File System** | Read/write files | Read documents, save reports |
+| **Code Interpreter** | Execute Python code | Data analysis, calculations |
+| **HTTP Request** | Call APIs | External service integration |
+| **Web Search** | Search the internet | Research, fact-checking |
+
+---
+
+## Creating Custom Skills
+
+**Via Settings → Node Managers → Skills:**
+
+1. Click "Add New Skill"
+2. Enter name and description
+3. Write SKILL.md content
+4. Add scripts in `/scripts/` folder
+5. Add docs in `/references/` folder
+6. Save to workspace library
+
+**Skill then appears in left sidebar for dragging to canvas.**
+
+---
+
+## Configuration
+
+**When clicked on canvas:**
+- Edit SKILL.md content
+- Add/remove script files
+- Configure parameters
+- Set file permissions
+
+---
+
+## Real-World Examples
+
+### Example 1: Email Sender Skill
+
+**SKILL.md:**
+```markdown
+---
+name: Email Sender
+description: Send emails via SMTP
+version: 1.0.0
+---
+
+# Email Sender Skill
+
+Sends emails using configured SMTP server.
+
+## Parameters
+- to: Recipient email address
+- subject: Email subject line
+- body: Email body content
+- attachments: Optional file paths
+
+## Usage
+Agent can call this skill to send emails on your behalf.
+Requires SMTP configuration in settings.
+```
+
+**scripts/send_email.py:**
+```python
+import smtplib
+from email.mime.text import MIMEText
+
+def send_email(to, subject, body):
+    # SMTP logic here
+    pass
+```
+
+---
+
+### Example 2: Database Query Skill
+
+**SKILL.md:**
+```markdown
+---
+name: PostgreSQL Query
+description: Query PostgreSQL database
+version: 1.0.0
+---
+
+# PostgreSQL Query Skill
+
+Execute SQL queries on configured PostgreSQL database.
+
+## Parameters
+- query: SQL query string
+- params: Query parameters (for prepared statements)
+
+## Safety
+- Read-only queries recommended
+- Use prepared statements to prevent SQL injection
+```
+
+---
+
+## Best Practices
+
+**✅ Do:**
+- Keep skills focused (one responsibility)
+- Document parameters clearly
+- Include usage examples
+- Handle errors gracefully
+- Use scripts for complex logic
+
+**❌ Don't:**
+- Create monolithic "do everything" skills
+- Hardcode credentials (use config)
+- Skip error handling
+- Ignore security implications
+
+---
+
+## Next Steps
+
+- [Memory Node](memory-node.md) - Add persistent knowledge
+- [Commands Node](commands-node.md) - Create slash commands
+- [Testing Agents](../06-testing-agents.md) - Test your skills
+
+---
+
+<div align="center">
+
+[← Back to Node Types](README.md) | [Agent Node →](agent-node.md) | [Memory Node →](memory-node.md)
+
+</div>
