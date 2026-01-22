@@ -1,6 +1,6 @@
 # Installation & Setup
 
-Get AgentBuilder running on your machine in under 5 minutes.
+Get ClaudeSpace running on your machine in under 5 minutes.
 
 ---
 
@@ -28,7 +28,7 @@ If you need to install or update Node.js, download it from [nodejs.org](https://
 
 ### Option 1: Quick Install (Recommended)
 
-Get AgentBuilder running in 3 commands:
+Get ClaudeSpace running in 3 commands:
 
 ```bash
 # Clone the repository
@@ -38,7 +38,7 @@ cd ClaudeSpaceElectron
 # Install dependencies
 npm install
 
-# Run AgentBuilder
+# Run ClaudeSpace
 npm run dev
 ```
 
@@ -52,7 +52,7 @@ npm run dev
   Electron app started
 ```
 
-✅ **Success:** AgentBuilder opens automatically
+✅ **Success:** ClaudeSpace opens automatically
 
 ---
 
@@ -81,7 +81,7 @@ npm run build:linux    # Linux AppImage
 
 ## First Launch
 
-When you launch AgentBuilder for the first time:
+When you launch ClaudeSpace for the first time:
 
 ### 1. Welcome Screen
 
@@ -91,13 +91,13 @@ The app opens with a workspace selection dialog.
 
 ### 2. Select Workspace
 
-A **workspace** is a folder where AgentBuilder stores your projects.
+A **workspace** is a folder where ClaudeSpace stores your projects.
 
 **Choose or create a folder:**
 ```bash
 # Example locations
-~/Documents/AgentBuilder-Workspace     # macOS/Linux
-C:\Users\YourName\AgentBuilder         # Windows
+~/Documents/ClaudeSpace-Workspace     # macOS/Linux
+C:\Users\YourName\ClaudeSpace         # Windows
 ```
 
 **Recommendation:** Create a dedicated folder for your agents.
@@ -106,7 +106,7 @@ C:\Users\YourName\AgentBuilder         # Windows
 
 After selecting a workspace, you'll see the main dashboard:
 
-[Screenshot: AgentBuilder main dashboard with "New Project" button and empty project list]
+[Screenshot: ClaudeSpace main dashboard with "New Project" button and empty project list]
 
 ✅ **Checkpoint:** You're ready to create projects!
 
@@ -151,7 +151,7 @@ npm run format
 
 ### Claude API Setup
 
-AgentBuilder requires Claude API access for agent testing.
+ClaudeSpace requires Claude API access for agent testing.
 
 **Two authentication methods:**
 
@@ -173,7 +173,7 @@ claude auth login
 #### Method 2: API Key
 
 1. Get API key from [console.anthropic.com](https://console.anthropic.com/)
-2. In AgentBuilder: Settings → Claude Configuration → API Key
+2. In ClaudeSpace: Settings → Claude Configuration → API Key
 3. Paste your key and click Save
 
 [Screenshot: Settings panel showing API key input field]
@@ -184,7 +184,7 @@ claude auth login
 
 ## Next Steps
 
-Now that AgentBuilder is installed, you're ready to build your first agent!
+Now that ClaudeSpace is installed, you're ready to build your first agent!
 
 **Continue to:** [Your First Agent](02-quick-start.md) (10-minute tutorial)
 
@@ -258,14 +258,14 @@ npm run dev
 - Path should not contain special characters
 
 **Create new workspace:**
-1. Create empty folder: `mkdir ~/AgentBuilder-New`
+1. Create empty folder: `mkdir ~/ClaudeSpace-New`
 2. In app: Switch Workspace → Select new folder
 
 **Reset workspace:**
-1. Close AgentBuilder
+1. Close ClaudeSpace
 2. Delete workspace cache:
-   - macOS/Linux: `rm -rf ~/.config/agentbuilder/`
-   - Windows: Delete `%APPDATA%\agentbuilder\`
+   - macOS/Linux: `rm -rf ~/.config/ClaudeSpace/`
+   - Windows: Delete `%APPDATA%\ClaudeSpace\`
 3. Restart app
 
 ---
@@ -344,7 +344,7 @@ sudo dnf install @development-tools
 
 ## Development Commands
 
-For developers working on AgentBuilder:
+For developers working on ClaudeSpace:
 
 ```bash
 # Development mode with hot reload
@@ -375,7 +375,7 @@ npm install
 
 ## System Architecture
 
-Understanding how AgentBuilder works under the hood:
+Understanding how ClaudeSpace works under the hood:
 
 ```
 ┌─────────────────────────────────────┐
@@ -407,7 +407,7 @@ src/
 
 ## License
 
-AgentBuilder is open source software licensed under the MIT License.
+ClaudeSpace is open source software licensed under the MIT License.
 
 **What this means:**
 - ✅ Free to use for personal and commercial projects

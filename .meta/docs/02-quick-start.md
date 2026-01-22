@@ -14,19 +14,19 @@ An AI agent that:
 
 **Time:** 10 minutes
 **Skill Level:** Beginner
-**Prerequisites:** [AgentBuilder installed](01-getting-started.md)
+**Prerequisites:** [ClaudeSpace installed](01-getting-started.md)
 
 ---
 
 ## Step 1: Create a Project (1 min)
 
-### Launch AgentBuilder
+### Launch ClaudeSpace
 
 ```bash
 npm run dev
 ```
 
-AgentBuilder opens to the main dashboard.
+ClaudeSpace opens to the main dashboard.
 
 ### Create New Project
 
@@ -294,7 +294,7 @@ Save your work and export for production use.
 
 ### Save Project
 
-AgentBuilder **auto-saves** every 5 seconds, but you can manually save:
+ClaudeSpace **auto-saves** every 5 seconds, but you can manually save:
 
 **Keyboard:** `Cmd+S` (macOS) or `Ctrl+S` (Windows/Linux)
 
@@ -315,7 +315,7 @@ Generate a `.claude` folder structure for use with Claude Code CLI:
 
 ### Exported Files
 
-AgentBuilder generates:
+ClaudeSpace generates:
 
 ```
 email-summarizer/

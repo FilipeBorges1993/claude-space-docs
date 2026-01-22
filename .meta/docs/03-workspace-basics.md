@@ -1,12 +1,12 @@
 # Workspace Basics
 
-Learn how AgentBuilder organizes your agents, projects, and workspaces.
+Learn how ClaudeSpace organizes your agents, projects, and workspaces.
 
 ---
 
 ## Workspace Hierarchy
 
-AgentBuilder uses a three-level organization system:
+ClaudeSpace uses a three-level organization system:
 
 ```
 📁 My-Agents-Workspace/          ← Workspace (root folder)
@@ -41,7 +41,7 @@ A **workspace** is a folder containing multiple related projects.
 
 **Example Workspaces:**
 ```
-~/Documents/AgentBuilder-Workspaces/
+~/Documents/ClaudeSpace-Workspaces/
 ├── work-agents/           ← Workspace 1: Work-related agents
 │   ├── email-handler/
 │   ├── meeting-scheduler/
@@ -54,7 +54,7 @@ A **workspace** is a folder containing multiple related projects.
 ```
 
 **Storage:**
-- Workspace path stored in AgentBuilder settings
+- Workspace path stored in ClaudeSpace settings
 - Recent workspaces list for quick switching
 - Workspace metadata (icon, title, description)
 
@@ -135,12 +135,12 @@ Project 2 Canvas:
 
 **At first launch:**
 
-1. AgentBuilder opens with **"Select Workspace Folder"** dialog
+1. ClaudeSpace opens with **"Select Workspace Folder"** dialog
 2. Click **"Choose Folder"**
 3. Navigate to desired location:
    ```
-   ~/Documents/AgentBuilder-Workspace     # macOS/Linux
-   C:\Users\YourName\AgentBuilder         # Windows
+   ~/Documents/ClaudeSpace-Workspace     # macOS/Linux
+   C:\Users\YourName\ClaudeSpace         # Windows
    ```
 4. Create new folder or select existing empty folder
 5. Click **"Select"**
@@ -148,7 +148,7 @@ Project 2 Canvas:
 [Screenshot: Workspace selection dialog]
 
 **What happens:**
-- AgentBuilder initializes workspace
+- ClaudeSpace initializes workspace
 - Creates `.library/` folder for shared components
 - Opens main dashboard (empty project list)
 
@@ -164,12 +164,12 @@ Project 2 Canvas:
 2. Shows current workspace name and icon
 3. Select **"Switch Workspace"** from menu
 4. Choose different folder
-5. AgentBuilder loads new workspace
+5. ClaudeSpace loads new workspace
 
 [Screenshot: Workspace dropdown menu with "Switch Workspace" option]
 
 **Recent Workspaces:**
-- AgentBuilder remembers last 5 workspaces
+- ClaudeSpace remembers last 5 workspaces
 - Quick access from dropdown menu
 - Click name to instantly switch
 
@@ -579,13 +579,13 @@ echo "Backup complete: $BACKUP.tar.gz"
    EOF
    ```
 
-3. **Open AgentBuilder** → Project appears on dashboard
+3. **Open ClaudeSpace** → Project appears on dashboard
 
 4. **Open project** → Manually recreate visual workflow (nodes + connections)
 
 **Why manual recreation?**
 - Visual graph not stored in `.claude` folder
-- AgentBuilder needs to build canvas representation
+- ClaudeSpace needs to build canvas representation
 - Settings auto-detected from `.claude` files
 
 ---
@@ -608,9 +608,9 @@ echo "Backup complete: $BACKUP.tar.gz"
 
 ### Storage Location
 
-AgentBuilder stores workspace preferences in:
-- **macOS/Linux:** `~/.config/agentbuilder/workspaces.json`
-- **Windows:** `%APPDATA%\agentbuilder\workspaces.json`
+ClaudeSpace stores workspace preferences in:
+- **macOS/Linux:** `~/.config/ClaudeSpace/workspaces.json`
+- **Windows:** `%APPDATA%\ClaudeSpace\workspaces.json`
 
 ```json
 {
@@ -651,10 +651,10 @@ AgentBuilder stores workspace preferences in:
 3. **Reset workspace cache:**
    ```bash
    # macOS/Linux
-   rm -rf ~/.config/agentbuilder/cache
+   rm -rf ~/.config/ClaudeSpace/cache
 
    # Windows
-   del %APPDATA%\agentbuilder\cache
+   del %APPDATA%\ClaudeSpace\cache
    ```
 
 4. **Re-select workspace:**
@@ -710,7 +710,7 @@ AgentBuilder stores workspace preferences in:
 3. **Manual deletion:**
    ```bash
    rm -rf ~/my-workspace/my-project
-   # Refresh dashboard in AgentBuilder
+   # Refresh dashboard in ClaudeSpace
    ```
 
 ---

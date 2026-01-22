@@ -1,6 +1,6 @@
 # Node Types Reference
 
-AgentBuilder uses **7 node types** to build AI agent systems. Each node serves a specific purpose in your agent's architecture.
+ClaudeSpace uses **7 node types** to build AI agent systems. Each node serves a specific purpose in your agent's architecture.
 
 ---
 
@@ -20,7 +20,7 @@ AgentBuilder uses **7 node types** to build AI agent systems. Each node serves a
 
 ## Node Anatomy
 
-Every node in AgentBuilder has these components:
+Every node in ClaudeSpace has these components:
 
 ### Visual Appearance
 

@@ -1,4 +1,4 @@
-# AgentBuilder Documentation
+# ClaudeSpace Documentation
 
 Visual IDE for building Claude AI agents with drag-and-drop simplicity.
 
@@ -10,11 +10,11 @@ Visual IDE for building Claude AI agents with drag-and-drop simplicity.
 
 ### Getting Started (⏱️ 15 minutes)
 
-New to AgentBuilder? Start here to get up and running quickly.
+New to ClaudeSpace? Start here to get up and running quickly.
 
 | Guide | Time | Description |
 |-------|------|-------------|
-| [Installation & Setup](01-getting-started.md) | 5 min | Get AgentBuilder running on your machine |
+| [Installation & Setup](01-getting-started.md) | 5 min | Get ClaudeSpace running on your machine |
 | [Your First Agent](02-quick-start.md) | 10 min | Build a working "Email Summarizer" agent step-by-step |
 | [Workspace Basics](03-workspace-basics.md) | 5 min | Understand projects, folders, and organization |
 
@@ -51,7 +51,7 @@ Learn about the 7 node types that make up your agent systems:
 
 ### What You Can Build
 
-AgentBuilder enables you to create sophisticated AI agent systems:
+ClaudeSpace enables you to create sophisticated AI agent systems:
 
 **Single-Purpose Agents**
 - Email handler and summarizer
@@ -99,7 +99,7 @@ AgentBuilder enables you to create sophisticated AI agent systems:
 
 ---
 
-## Why AgentBuilder?
+## Why ClaudeSpace?
 
 ### The Problem
 
@@ -111,7 +111,7 @@ Manually editing `.claude` configuration folders is error-prone and difficult to
 
 ### The Solution
 
-AgentBuilder provides a visual interface for building Claude AI agents:
+ClaudeSpace provides a visual interface for building Claude AI agents:
 
 **Visual Node Graph**
 - Drag-and-drop canvas for building agent workflows
@@ -137,7 +137,7 @@ AgentBuilder provides a visual interface for building Claude AI agents:
 
 ## Quick Links
 
-**New to AgentBuilder?**
+**New to ClaudeSpace?**
 → Start with [Your First Agent](02-quick-start.md) (10 minutes)
 
 **Need to install?**
@@ -181,7 +181,7 @@ MIT License - See [LICENSE](../../LICENSE)
 
 <div align="center">
 
-**AgentBuilder** - Making AI agent development visual, one node at a time.
+**ClaudeSpace** - Making AI agent development visual, one node at a time.
 
 ```
 ⚡ Electron + Vue + Claude SDK = 🚀

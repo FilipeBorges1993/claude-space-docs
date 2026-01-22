@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "AgentBuilder",
+  "name": "docs",
   "colors": {
     "primary": "#9333EA",
     "light": "#A855F7",
@@ -22,7 +22,6 @@
             "pages": [
               "index",
               "getting-started",
-              "quickstart",
               "workspace-basics"
             ]
           },
@@ -69,12 +68,7 @@
         "label": "Get Help",
         "href": "https://github.com/FilipeBorges1993/ClaudeSpaceElectron/issues"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Download",
-      "href": "https://github.com/FilipeBorges1993/ClaudeSpaceElectron/releases"
-    }
+    ]
   },
   "contextual": {
     "options": [
